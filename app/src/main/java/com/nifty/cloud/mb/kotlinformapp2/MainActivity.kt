@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Handle navigation view item clicks here.
         val id = item.itemId
 
-        var fragment: Fragment = when (id) {
+        val fragment: Fragment = when (id) {
             R.id.nav_demo1 -> Demo1Fragment()
             R.id.nav_demo2 -> Demo2Fragment()
             R.id.nav_demo3_1 -> Demo31Fragment()
