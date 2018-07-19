@@ -7,12 +7,13 @@ import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
 
 import com.nifty.cloud.mb.core.NCMB
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.app_bar_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -24,21 +25,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 "「YOUR_NCMB_APPLICATION_KEY」",
                 "「YOUR_NCMB_CLIENT_KEY」")
 
-        val toolbar = findViewById<View>(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
 
-        val drawer = findViewById<View>(R.id.drawer_layout) as DrawerLayout
         val toggle = ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-        drawer.addDrawerListener(toggle)
+                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
 
-        val navigationView = findViewById<View>(R.id.nav_view) as NavigationView
-        navigationView.setNavigationItemSelectedListener(this)
+        nav_view.setNavigationItemSelectedListener(this)
 
         // load demo1 fragment default
         title = getString(R.string.demo1_title)
-        navigationView.menu.getItem(0).isChecked = true
+        nav_view.menu.getItem(0).isChecked = true
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.content, Demo1Fragment())
         fragmentTransaction.commit()
@@ -47,9 +45,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onBackPressed() {
-        val drawer = findViewById<View>(R.id.drawer_layout) as DrawerLayout
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START)
+        if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
+            drawer_layout.closeDrawer(GravityCompat.START)
         } else {
             super.onBackPressed()
         }

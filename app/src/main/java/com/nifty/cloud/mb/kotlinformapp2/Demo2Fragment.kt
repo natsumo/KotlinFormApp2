@@ -4,11 +4,9 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 
 import com.nifty.cloud.mb.kotlinformapp2.adapter.InquiryListAdapter
 import com.nifty.cloud.mb.kotlinformapp2.mbaas.Mbaas
@@ -21,7 +19,6 @@ import java.util.ArrayList
 
 class Demo2Fragment : Fragment() {
     private val inquiryList = ArrayList<Inquiry>()
-    private var recyclerView: RecyclerView? = null
     private var mAdapter: InquiryListAdapter? = null
     private var mProgressBar: ProgressBarFragment? = null
 
@@ -38,13 +35,11 @@ class Demo2Fragment : Fragment() {
         mProgressBar = ProgressBarFragment()
         fragmentManager!!.beginTransaction().add(R.id.progress, mProgressBar).commitAllowingStateLoss()
 
-        val tvResultCount = tvResultCount
-        recyclerView = recycler_view
         mAdapter = InquiryListAdapter(inquiryList)
         val mLayoutManager = LinearLayoutManager(context)
-        recyclerView!!.layoutManager = mLayoutManager
-        recyclerView!!.itemAnimator = DefaultItemAnimator()
-        recyclerView!!.adapter = mAdapter
+        recycler_view.layoutManager = mLayoutManager
+        recycler_view.itemAnimator = DefaultItemAnimator()
+        recycler_view.adapter = mAdapter
         Mbaas.getAllData { list, e ->
             if (mProgressBar != null && mProgressBar!!.isAdded) {
                 fragmentManager!!.beginTransaction().remove(mProgressBar).commitAllowingStateLoss()

@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +20,6 @@ import java.util.ArrayList
 
 class Demo32Fragment : Fragment() {
     private var inquiryList: MutableList<Inquiry> = ArrayList()
-    private var recyclerView: RecyclerView? = null
     private var mAdapter: InquiryListAdapter? = null
     private var mProgressBar: ProgressBarFragment? = null
 
@@ -35,17 +33,14 @@ class Demo32Fragment : Fragment() {
         // Hide the keyboard if it dispaly when initial
         Utils.dismissKeyboard(activity)
 
-        recyclerView = recycler_view
         mAdapter = InquiryListAdapter(inquiryList)
         val mLayoutManager = LinearLayoutManager(context)
-        recyclerView!!.layoutManager = mLayoutManager
-        recyclerView!!.itemAnimator = DefaultItemAnimator()
-        recyclerView!!.adapter = mAdapter
+        recycler_view.layoutManager = mLayoutManager
+        recycler_view.itemAnimator = DefaultItemAnimator()
+        recycler_view.adapter = mAdapter
 
-        val tvResultCount = tvResultCount
         val spinnerAgeGreaterThan = spinnerAgeGreaterThan
         val spinnerAgeLessThan = spinnerAgeLessThan
-        val btnSearch = btnSearch
 
         val ages = ArrayList<String>()
         ages.add("- age -")

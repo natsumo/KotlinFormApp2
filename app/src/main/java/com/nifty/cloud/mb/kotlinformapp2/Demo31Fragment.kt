@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +20,6 @@ import java.util.ArrayList
 
 class Demo31Fragment : Fragment() {
     private var inquiryList: MutableList<Inquiry> = ArrayList()
-    private var recyclerView: RecyclerView? = null
     private var mAdapter: InquiryListAdapter? = null
     private var mProgressBar: ProgressBarFragment? = null
 
@@ -35,17 +33,14 @@ class Demo31Fragment : Fragment() {
         // Hide the keyboard if it dispaly when initial
         Utils.dismissKeyboard(activity)
 
-        recyclerView = recycler_view
         mAdapter = InquiryListAdapter(inquiryList)
         val mLayoutManager = LinearLayoutManager(context)
-        recyclerView!!.layoutManager = mLayoutManager
-        recyclerView!!.itemAnimator = DefaultItemAnimator()
-        recyclerView!!.adapter = mAdapter
+        recycler_view.layoutManager = mLayoutManager
+        recycler_view.itemAnimator = DefaultItemAnimator()
+        recycler_view.adapter = mAdapter
 
-        val tvResultCount = tvResultCount
-        val spnPrefecture = spinner_prefecture
         val prefectureAdapter = ArrayAdapter(activity!!, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.prefecture_data))
-        spnPrefecture.adapter = prefectureAdapter
+        spinner_prefecture.adapter = prefectureAdapter
         val inputMail = inputMailAddress
         val btnSearchByEmail = btnSearchMail
         val btnSearchByPref = btnSearchPrefecture
@@ -105,14 +100,14 @@ class Demo31Fragment : Fragment() {
             // Hide the keyboard
             Utils.dismissKeyboard(activity)
 
-            if (spnPrefecture.selectedItemPosition == 0) {
+            if (spinner_prefecture.selectedItemPosition == 0) {
                 Utils.showDialog(this.context!!, getString(R.string.please_fill_in_the_value))
             } else {
                 // show progress
                 mProgressBar = ProgressBarFragment()
                 fragmentManager!!.beginTransaction().add(R.id.progress, mProgressBar).commitAllowingStateLoss()
 
-                Mbaas.getSearchData(Mbaas.PREFECTURE, spnPrefecture.selectedItem.toString()) { list, e ->
+                Mbaas.getSearchData(Mbaas.PREFECTURE, spinner_prefecture.selectedItem.toString()) { list, e ->
                     // remove progress
                     if (mProgressBar != null && mProgressBar!!.isAdded) {
                         fragmentManager!!.beginTransaction().remove(mProgressBar).commitAllowingStateLoss()

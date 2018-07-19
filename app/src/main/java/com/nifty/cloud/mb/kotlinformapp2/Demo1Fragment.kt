@@ -38,15 +38,10 @@ class Demo1Fragment : Fragment() {
         val prefectureAdapter = ArrayAdapter(context!!, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.prefecture_data))
         spnPrefecture.adapter = prefectureAdapter
 
-        val inputName = inputName
-        val inputMail = inputMailAddress
-        val inputTitle = inputTitle
-        val inputContents = inputContents
-        val btnSubmit = btnSubmit
         btnSubmit.setOnClickListener {
             if ("" == inputName.text.toString()) {
                 Utils.showDialog(context!!, getString(R.string.name_is_not_entered))
-            } else if ("" == inputMail.text.toString()) {
+            } else if ("" == inputMailAddress.text.toString()) {
                 Utils.showDialog(context!!, getString(R.string.email_is_not_entered))
             } else if (spinner_age.selectedItemPosition == 0) {
                 Utils.showDialog(context!!, getString(R.string.age_has_not_been_entered))
@@ -62,7 +57,7 @@ class Demo1Fragment : Fragment() {
                 fragmentManager!!.beginTransaction().add(R.id.progress, mProgressBar).commitAllowingStateLoss()
 
                 val name = inputName.text.toString()
-                val email = inputMail.text.toString()
+                val email = inputMailAddress.text.toString()
                 val age = spinner_age.selectedItemPosition - 1
                 val prefecture = spnPrefecture.selectedItem.toString()
                 val title = inputTitle.text.toString()
