@@ -142,7 +142,7 @@
     <string name="value_is_invalid">値が不正です</string>
     <string name="name_is_not_entered">名前が入力されていません</string>
     <string name="email_is_not_entered">メールアドレスが入力されていません</string>
-    <string name="inquiry_title_has_not_been_entered"><![CDATA[問い合わせタイトル<br>が入力されていません]]></string>
+    <string name="inquiry_title_has_not_been_entered">問い合わせタイトル\nが入力されていません</string>
     <string name="inquiry_content_is_not_entered">問い合わせ内容が入力されていません</string>
     <string name="age_has_not_been_entered">年齢が入力されていません</string>
     <string name="province_is_not_entered">都道府県が入力されていません</string>
