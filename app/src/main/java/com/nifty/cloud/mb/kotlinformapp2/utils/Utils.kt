@@ -1,8 +1,10 @@
 package com.nifty.cloud.mb.kotlinformapp2.utils
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
+import android.view.inputmethod.InputMethodManager
 
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -29,5 +31,12 @@ object Utils {
         mbuilder.setNegativeButton("OK") { dialogInterface, i -> dialogInterface.dismiss() }
         val alertDialog = mbuilder.create()
         alertDialog.show()
+    }
+
+    fun dismissKeyboard(activity: Activity?) {
+        val imm = activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        if (null != activity.currentFocus)
+            imm.hideSoftInputFromWindow(activity.currentFocus!!
+                    .applicationWindowToken, 0)
     }
 }

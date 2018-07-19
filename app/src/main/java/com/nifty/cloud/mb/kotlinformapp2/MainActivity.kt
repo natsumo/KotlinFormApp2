@@ -60,20 +60,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Handle navigation view item clicks here.
         val id = item.itemId
 
-        var fragment: Fragment? = null
-        val fragmentClass: Class<*>?
-        fragmentClass = when (id) {
-            R.id.nav_demo1 -> Demo1Fragment::class.java
-            R.id.nav_demo2 -> Demo2Fragment::class.java
-            R.id.nav_demo3_1 -> Demo31Fragment::class.java
-            R.id.nav_demo3_2 -> Demo32Fragment::class.java
-            else -> Demo1Fragment::class.java
-        }
-
-        try {
-            fragment = fragmentClass.newInstance() as Fragment
-        } catch (e: Exception) {
-            e.printStackTrace()
+        var fragment: Fragment = when (id) {
+            R.id.nav_demo1 -> Demo1Fragment()
+            R.id.nav_demo2 -> Demo2Fragment()
+            R.id.nav_demo3_1 -> Demo31Fragment()
+            R.id.nav_demo3_2 -> Demo32Fragment()
+            else -> Demo1Fragment()
         }
 
         // Insert the fragment by replacing any existing fragment
