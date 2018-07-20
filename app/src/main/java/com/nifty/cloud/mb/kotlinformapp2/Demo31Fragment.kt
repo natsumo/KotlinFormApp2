@@ -30,6 +30,8 @@ class Demo31Fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        Utils.setupUI(parent, activity)
+
         // Hide the keyboard if it dispaly when initial
         Utils.dismissKeyboard(activity)
 
@@ -41,11 +43,8 @@ class Demo31Fragment : Fragment() {
 
         val prefectureAdapter = ArrayAdapter(activity!!, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.prefecture_data))
         spinner_prefecture.adapter = prefectureAdapter
-        val inputMail = inputMailAddress
-        val btnSearchByEmail = btnSearchMail
-        val btnSearchByPref = btnSearchPrefecture
 
-        btnSearchByEmail.setOnClickListener {
+        btnSearchMail.setOnClickListener {
             tvResultCount.visibility = View.INVISIBLE
             inquiryList = ArrayList()
             mAdapter!!.setInquiryList(inquiryList)
@@ -54,7 +53,7 @@ class Demo31Fragment : Fragment() {
             // Hide the keyboard
             Utils.dismissKeyboard(activity)
 
-            val email = inputMail.text.toString().trim()
+            val email = inputMailAddress.text.toString().trim()
             if (email.isNullOrBlank()) {
                 Utils.showDialog(this.context!!, getString(R.string.please_fill_in_the_value))
             } else {
@@ -91,7 +90,7 @@ class Demo31Fragment : Fragment() {
             }
         }
 
-        btnSearchByPref.setOnClickListener {
+        btnSearchPrefecture.setOnClickListener {
             tvResultCount.visibility = View.INVISIBLE
             inquiryList = ArrayList()
             mAdapter!!.setInquiryList(inquiryList)

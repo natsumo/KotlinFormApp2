@@ -39,9 +39,6 @@ class Demo32Fragment : Fragment() {
         recycler_view.itemAnimator = DefaultItemAnimator()
         recycler_view.adapter = mAdapter
 
-        val spinnerAgeGreaterThan = spinnerAgeGreaterThan
-        val spinnerAgeLessThan = spinnerAgeLessThan
-
         val ages = ArrayList<String>()
         ages.add("- age -")
         for (i in 0..120) {

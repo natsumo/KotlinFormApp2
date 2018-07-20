@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.fragment_demo1.*
 
 import java.util.ArrayList
 
+
 class Demo1Fragment : Fragment() {
     private var mProgressBar: ProgressBarFragment? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -22,6 +23,8 @@ class Demo1Fragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        Utils.setupUI(parent, activity)
 
         // Hide the keyboard if it dispaly when initial
         Utils.dismissKeyboard(activity)
@@ -34,9 +37,8 @@ class Demo1Fragment : Fragment() {
         val ageAdapter = ArrayAdapter(context!!, android.R.layout.simple_spinner_item, ages)
         spinner_age.adapter = ageAdapter
 
-        val spnPrefecture = spinner_prefecture
         val prefectureAdapter = ArrayAdapter(context!!, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.prefecture_data))
-        spnPrefecture.adapter = prefectureAdapter
+        spinner_prefecture.adapter = prefectureAdapter
 
         btnSubmit.setOnClickListener {
 
@@ -49,7 +51,7 @@ class Demo1Fragment : Fragment() {
                 Utils.showDialog(context!!, getString(R.string.email_is_not_entered))
             } else if (spinner_age.selectedItemPosition == 0) {
                 Utils.showDialog(context!!, getString(R.string.age_has_not_been_entered))
-            } else if (spnPrefecture.selectedItemPosition == 0) {
+            } else if (spinner_prefecture.selectedItemPosition == 0) {
                 Utils.showDialog(context!!, getString(R.string.province_is_not_entered))
             } else if (inputTitle.text.toString().isNullOrBlank()) {
                 Utils.showDialog(context!!, getString(R.string.inquiry_title_has_not_been_entered))
@@ -63,7 +65,7 @@ class Demo1Fragment : Fragment() {
                 val name = inputName.text.toString()
                 val email = inputMailAddress.text.toString()
                 val age = spinner_age.selectedItemPosition - 1
-                val prefecture = spnPrefecture.selectedItem.toString()
+                val prefecture = spinner_prefecture.selectedItem.toString()
                 val title = inputTitle.text.toString()
                 val contents = inputContents.text.toString()
                 Mbaas.saveData(name, email, age, prefecture, title, contents) { e ->
@@ -82,4 +84,5 @@ class Demo1Fragment : Fragment() {
             }
         }
     }
+
 }
