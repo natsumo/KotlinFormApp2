@@ -39,6 +39,10 @@ class Demo1Fragment : Fragment() {
         spnPrefecture.adapter = prefectureAdapter
 
         btnSubmit.setOnClickListener {
+
+            //Hide the keyboard
+            Utils.dismissKeyboard(activity)
+
             if ("" == inputName.text.toString()) {
                 Utils.showDialog(context!!, getString(R.string.name_is_not_entered))
             } else if ("" == inputMailAddress.text.toString()) {
