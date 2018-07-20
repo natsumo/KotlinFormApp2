@@ -43,17 +43,17 @@ class Demo1Fragment : Fragment() {
             //Hide the keyboard
             Utils.dismissKeyboard(activity)
 
-            if ("" == inputName.text.toString()) {
+            if (inputName.text.toString().isNullOrBlank()) {
                 Utils.showDialog(context!!, getString(R.string.name_is_not_entered))
-            } else if ("" == inputMailAddress.text.toString()) {
+            } else if (inputMailAddress.text.toString().isNullOrBlank()) {
                 Utils.showDialog(context!!, getString(R.string.email_is_not_entered))
             } else if (spinner_age.selectedItemPosition == 0) {
                 Utils.showDialog(context!!, getString(R.string.age_has_not_been_entered))
             } else if (spnPrefecture.selectedItemPosition == 0) {
                 Utils.showDialog(context!!, getString(R.string.province_is_not_entered))
-            } else if ("" == inputTitle.text.toString()) {
+            } else if (inputTitle.text.toString().isNullOrBlank()) {
                 Utils.showDialog(context!!, getString(R.string.inquiry_title_has_not_been_entered))
-            } else if ("" == inputContents.text.toString()) {
+            } else if (inputContents.text.toString().isNullOrBlank()) {
                 Utils.showDialog(context!!, getString(R.string.inquiry_content_is_not_entered))
             } else {
                 // show progress

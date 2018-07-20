@@ -54,8 +54,8 @@ class Demo31Fragment : Fragment() {
             // Hide the keyboard
             Utils.dismissKeyboard(activity)
 
-            val email = inputMail.text.toString()
-            if ("" == email) {
+            val email = inputMail.text.toString().trim()
+            if (email.isNullOrBlank()) {
                 Utils.showDialog(this.context!!, getString(R.string.please_fill_in_the_value))
             } else {
                 // show progress

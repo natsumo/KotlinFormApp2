@@ -52,13 +52,13 @@ class Demo2Fragment : Fragment() {
                 //検索成功時の処理
                 for (obj in list!!) {
                     val inquiry = Inquiry()
-                    inquiry.name = obj.getString("name")
-                    inquiry.title = obj.getString("title")
-                    inquiry.contents = obj.getString("contents")
+                    inquiry.name = obj.getString("name").trim()
+                    inquiry.title = obj.getString("title").trim()
+                    inquiry.contents = obj.getString("contents").trim()
                     inquiry.age = obj.getInt("age")
-                    inquiry.prefecture = obj.getString("prefecture")
-                    inquiry.emailAddress = obj.getString("emailAddress")
-                    inquiry.createDate = Utils.formatTime(obj.getString("createDate"))
+                    inquiry.prefecture = obj.getString("prefecture").trim()
+                    inquiry.emailAddress = obj.getString("emailAddress").trim()
+                    inquiry.createDate = Utils.formatTime(obj.getString("createDate").trim())
                     inquiryList.add(inquiry)
                 }
                 tvResultCount.setText(String.format(getString(R.string.all_search_results), list.size))
