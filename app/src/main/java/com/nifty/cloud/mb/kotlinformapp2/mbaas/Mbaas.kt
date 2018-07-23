@@ -9,14 +9,14 @@ object Mbaas {
     const val PREFECTURE = "prefecture"
 
     /***** demo1：保存  */
-    fun saveData(name: String, emailAddress: String, age: Int?, prefecture: String, title: String, contents: String, callback: (Any?) -> Unit) {
+    fun saveData(name: String, emailAddress: String, age: Int, prefecture: String, title: String, contents: String, callback: (Any?) -> Unit) {
         try {
             // 保存先クラスの作成
             val inquiry = NCMBObject("Inquiry")
             // データの設定と保存
             inquiry.put("name", name)
             inquiry.put("emailAddress", emailAddress)
-            inquiry.put("age", age!!)
+            inquiry.put("age", age)
             inquiry.put("prefecture", prefecture)
             inquiry.put("title", title)
             inquiry.put("contents", contents)
