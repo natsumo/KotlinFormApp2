@@ -10,12 +10,14 @@ import android.widget.EditText
 
 import java.text.ParseException
 import java.text.SimpleDateFormat
+import java.util.*
 
 object Utils {
     fun formatTime(time: String): String {
         val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
         val output = SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
         try {
+            sdf.setTimeZone(TimeZone.getTimeZone("UTC"))
             val d = sdf.parse(time)
             return output.format(d)
         } catch (e: ParseException) {
