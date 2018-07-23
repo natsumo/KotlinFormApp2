@@ -14,10 +14,11 @@ import java.util.*
 
 object Utils {
     fun formatTime(time: String): String {
-        val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+        val locale = Locale.JAPAN
+        val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", locale)
+        sdf.setTimeZone(SimpleTimeZone(0, "UTC"))
         val output = SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
         try {
-            sdf.setTimeZone(TimeZone.getTimeZone("UTC"))
             val d = sdf.parse(time)
             return output.format(d)
         } catch (e: ParseException) {
